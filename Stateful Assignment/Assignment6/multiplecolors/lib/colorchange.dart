@@ -10,19 +10,30 @@ class _ColorchangeState extends State<Colorchange> {
   bool boxcolor1 = false;
   bool boxcolor2 = false;
 
+  int counter1 = 0;
+  int counter2 = 0;
+
   Color setColor1() {
-    if (boxcolor1 == false) {
-      return Colors.black;
+    if (counter1 == 1) {
+      return Colors.green;
+    } else if (counter1 == 2) {
+      return Colors.red;
+    } else if (counter1 == 3) {
+      return Colors.blue;
     } else {
-      return Colors.amber;
+      return Colors.black;
     }
   }
 
   Color setColor2() {
-    if (boxcolor2 == false) {
-      return Colors.black;
+    if (counter2 == 1) {
+      return Colors.amber;
+    } else if (counter2 == 2) {
+      return Colors.deepPurple;
+    } else if (counter2 == 3) {
+      return Colors.limeAccent;
     } else {
-      return Colors.blue;
+      return Colors.black;
     }
   }
 
@@ -30,7 +41,7 @@ class _ColorchangeState extends State<Colorchange> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Togling"),
+        title: const Text("Multi Color in container"),
         backgroundColor: Colors.blue,
       ),
       body: Row(
@@ -50,10 +61,9 @@ class _ColorchangeState extends State<Colorchange> {
               ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    if (boxcolor1 == false) {
-                      boxcolor1 = true;
-                    } else {
-                      boxcolor1 = false;
+                    counter1++;
+                    if (counter1 == 4) {
+                      counter1 = 0;
                     }
                   });
                 },
@@ -77,10 +87,9 @@ class _ColorchangeState extends State<Colorchange> {
               ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    if (boxcolor2 == false) {
-                      boxcolor2 = true;
-                    } else {
-                      boxcolor2 = false;
+                    counter2++;
+                    if (counter2 == 4) {
+                      counter2 = 0;
                     }
                   });
                 },
