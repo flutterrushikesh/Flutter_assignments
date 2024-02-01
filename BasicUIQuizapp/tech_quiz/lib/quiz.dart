@@ -15,8 +15,11 @@ class _QuizState extends State<Quiz> {
   Color setColor() {
     if (option1 == false) {
       return Colors.green;
-    } else {
-      return Colors.red;
+    } //else if (option1 == true) {
+    //return Colors.red;
+    //}
+    else {
+      return Colors.blue.shade100;
     }
   }
 
@@ -64,7 +67,12 @@ class _QuizState extends State<Quiz> {
               ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    option1 = true;
+                    if (option1 == false) {
+                      option1 = true;
+                    } else {
+                      option1 = false;
+                    }
+                    ;
                   });
                 },
                 style: ElevatedButton.styleFrom(
@@ -72,7 +80,7 @@ class _QuizState extends State<Quiz> {
                     vertical: 10,
                     horizontal: 50,
                   ),
-                  backgroundColor: Colors.blue.shade100,
+                  backgroundColor: setColor(),
                   foregroundColor: Colors.black,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
