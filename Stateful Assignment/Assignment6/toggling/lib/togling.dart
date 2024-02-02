@@ -7,22 +7,40 @@ class Colorchange extends StatefulWidget {
 }
 
 class _ColorchangeState extends State<Colorchange> {
-  bool boxcolor1 = false;
-  bool boxcolor2 = false;
+  bool option1 = false;
+  bool option2 = false;
+  bool option3 = false;
+  bool option4 = false;
 
   Color setColor1() {
-    if (boxcolor1 == false) {
+    if (option1 == false) {
       return Colors.black;
     } else {
-      return Colors.amber;
+      return Colors.green;
     }
   }
 
   Color setColor2() {
-    if (boxcolor2 == false) {
+    if (option2 == false) {
       return Colors.black;
     } else {
-      return Colors.blue;
+      return Colors.red;
+    }
+  }
+
+  Color setColor3() {
+    if (option3 == false) {
+      return Colors.black;
+    } else {
+      return Colors.red;
+    }
+  }
+
+  Color setColor4() {
+    if (option4 == false) {
+      return Colors.black;
+    } else {
+      return Colors.red;
     }
   }
 
@@ -33,62 +51,98 @@ class _ColorchangeState extends State<Colorchange> {
         title: const Text("Togling"),
         backgroundColor: Colors.blue,
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: 150,
-                width: 150,
-                color: setColor1(),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    if (boxcolor1 == false) {
-                      boxcolor1 = true;
-                    } else {
-                      boxcolor1 = false;
-                    }
-                  });
-                },
-                child: const Text(
-                  "Change Color",
+      body: SingleChildScrollView(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 150,
+                  width: 150,
+                  color: setColor1(),
                 ),
-              ),
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: 150,
-                width: 150,
-                color: setColor2(),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    if (boxcolor2 == false) {
-                      boxcolor2 = true;
-                    } else {
-                      boxcolor2 = false;
-                    }
-                  });
-                },
-                child: const Text("Change Color"),
-              ),
-            ],
-          ),
-        ],
+                Container(
+                  height: 150,
+                  width: 150,
+                  color: setColor2(),
+                ),
+                Container(
+                  height: 150,
+                  width: 150,
+                  color: setColor3(),
+                ),
+                Container(
+                  height: 150,
+                  width: 150,
+                  color: setColor4(),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      if (option1 == false) {
+                        option1 = true;
+                      }
+                    });
+                  },
+                  child: const Text("Option1"),
+                ),
+                //const SizedBox(
+                //height: 20,
+                //),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      if (option1 == false) {
+                        option1 = true;
+                      }
+                      if (option2 == false) {
+                        option2 = true;
+                      }
+                    });
+                  },
+                  child: const Text("Option2"),
+                ),
+                //const SizedBox(
+                //height: 20,
+                //),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      if (option1 == false) {
+                        option1 = true;
+                      }
+                      if (option3 == false) {
+                        option3 = true;
+                      }
+                    });
+                  },
+                  child: const Text("Option3"),
+                ),
+                // const SizedBox(
+                // height: 20,
+                //),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      if (option1 == false) {
+                        option1 = true;
+                      }
+                      if (option4 == false) {
+                        option4 = true;
+                      }
+                    });
+                  },
+                  child: const Text("Option4"),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

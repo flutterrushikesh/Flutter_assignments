@@ -9,19 +9,6 @@ class Quiz extends StatefulWidget {
 class _QuizState extends State<Quiz> {
   bool option1 = false;
   bool option2 = false;
-  bool option3 = false;
-  bool option4 = false;
-
-  Color setColor() {
-    if (option1 == false) {
-      return Colors.green;
-    } //else if (option1 == true) {
-    //return Colors.red;
-    //}
-    else {
-      return Colors.blue.shade100;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,23 +51,16 @@ class _QuizState extends State<Quiz> {
                   fontSize: 17,
                 ),
               ),
+
+              //button1
               ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    if (option1 == false) {
-                      option1 = true;
-                    } else {
-                      option1 = false;
-                    }
-                    ;
-                  });
-                },
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(
                     vertical: 10,
                     horizontal: 50,
                   ),
-                  backgroundColor: setColor(),
+                  backgroundColor: Colors.blue.shade100,
                   foregroundColor: Colors.black,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
@@ -88,7 +68,11 @@ class _QuizState extends State<Quiz> {
                 ),
                 child: const Text("Flutter is cross platform framework"),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(
+                height: 20,
+              ),
+
+              //BUtton 2
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -107,6 +91,8 @@ class _QuizState extends State<Quiz> {
               const SizedBox(
                 height: 20,
               ),
+
+              //Button3
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -125,6 +111,8 @@ class _QuizState extends State<Quiz> {
               const SizedBox(
                 height: 20,
               ),
+
+              //Button4
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
