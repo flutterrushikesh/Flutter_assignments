@@ -7,8 +7,7 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  bool option1 = false;
-  bool option2 = false;
+  int count = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,14 @@ class _QuizState extends State<Quiz> {
         backgroundColor: Colors.amber,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          setState(() {
+            count++;
+            while (count == 10) {
+              count = 0;
+            }
+          });
+        },
         child: const Text("Next"),
       ),
       body: Row(
@@ -36,9 +42,9 @@ class _QuizState extends State<Quiz> {
               const SizedBox(
                 height: 5,
               ),
-              const Text(
-                "Questions: 1/10",
-                style: TextStyle(
+              Text(
+                "Questions: $count/10",
+                style: const TextStyle(
                   fontSize: 20,
                 ),
               ),
