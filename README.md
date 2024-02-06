@@ -1,12 +1,13 @@
 # Flutter_assignments
 
 
-StateLess Assignments: Assignment1, Assignment2, Assignment3, Assignment10, Assignment11,Assignment12,Assignment13, Assignment14
+StateLess Assignments: Assignment1, Assignment2, Assignment3, Assignment10, Assignment11,Assignment12,Assignment13, Assignment14, Assignment15,
 
 
-StateFul Assignments: Assignment4, Assignment5, Assignment6, Assignment7, Assignment8, Assignment9, Assignment15 , Assignment16
+StateFul Assignments: Assignment4, Assignment5, Assignment6, Assignment7, Assignment8, Assignment9, Assignment16 , Assignment17, Assignment18, BasicUIQuizapp19, Assignment20, Assignment21
+
 
 Basic quiz app ui is completed
 
-assignment 6  in toggling such change are aquirs
+assignment 6  in toggling such change are required
 
