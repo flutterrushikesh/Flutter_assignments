@@ -7,7 +7,7 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  int count = 0;
+  int count = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class _QuizState extends State<Quiz> {
           setState(() {
             count++;
             while (count == 10) {
-              count = 0;
+              count = 1;
             }
           });
         },
