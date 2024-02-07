@@ -147,10 +147,10 @@ class _Zee5State extends State<Zee5> {
                       fontSize: 20,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.more_horiz_outlined,
                       color: Colors.blue,
                     ),
@@ -185,7 +185,7 @@ class _Zee5State extends State<Zee5> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        child: Icon(
+        child: const Icon(
           Icons.download_for_offline_outlined,
           size: 30,
         ),
