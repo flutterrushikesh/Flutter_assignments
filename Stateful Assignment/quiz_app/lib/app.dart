@@ -50,7 +50,6 @@ class _QuizState extends State<Quiz> {
       "answerIndex": 3,
     },
     {
-      "question": "Who is founder of Goglle",
       "option": [
         "Steave Jobs",
         "Lary Page",
@@ -63,15 +62,13 @@ class _QuizState extends State<Quiz> {
 
   bool questionScreen = true;
   int questionIndex = 0;
-  bool optionColor1 = false;
-  bool optionColor2 = false;
+  int optionColor1 = -1;
+  //bool optionColor2 = false;
 
   Color isSetColor() {
-    if (optionColor1 == false) {
+    if (optionColor1 == -1) {
       return Colors.blue.shade200;
-    } else if (optionColor2 == false) {
-      return Colors.green;
-    } else if (optionColor1 == true) {
+    } else if (optionColor1 == 0) {
       return Colors.green;
     } else {
       return Colors.red;
@@ -135,13 +132,7 @@ class _QuizState extends State<Quiz> {
               width: 180,
               height: 30,
               child: ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    if (optionColor2 == false) {
-                      optionColor2 = true;
-                    }
-                  });
-                },
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   backgroundColor: isSetColor(),
                   foregroundColor: Colors.black,
@@ -154,13 +145,7 @@ class _QuizState extends State<Quiz> {
               width: 180,
               height: 30,
               child: ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    if (optionColor1 == false) {
-                      optionColor1 = true;
-                    }
-                  });
-                },
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
                     backgroundColor: isSetColor(),
                     foregroundColor: Colors.black),
@@ -201,6 +186,13 @@ class _QuizState extends State<Quiz> {
               ),
             ),
           ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(
+            Icons.arrow_forward_outlined,
+            size: 25,
+          ),
         ),
       );
     } else {
