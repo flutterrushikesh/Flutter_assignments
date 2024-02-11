@@ -63,15 +63,20 @@ class _QuizState extends State<Quiz> {
   bool questionScreen = true;
   int questionIndex = 0;
   int optionColor1 = -1;
-  //bool optionColor2 = false;
+  int currentAnswerIndex = 0;
+  int selectedAnswerIndex = 0;
 
-  Color isSetColor() {
-    if (optionColor1 == -1) {
-      return Colors.blue.shade200;
-    } else if (optionColor1 == 0) {
-      return Colors.green;
+  MaterialStatePropertyAll<Color?> buttonColor(int button) {
+    if (optionColor1 != -1) {
+      if (button == allQuestions[questionIndex]["answerIndex"]) {
+        return const MaterialStatePropertyAll(Colors.green);
+      } else if (button == selectedAnswerIndex) {
+        return const MaterialStatePropertyAll(Colors.red);
+      } else {
+        return const MaterialStatePropertyAll(null);
+      }
     } else {
-      return Colors.red;
+      return const MaterialStatePropertyAll(null);
     }
   }
 
@@ -129,26 +134,39 @@ class _QuizState extends State<Quiz> {
               ),
             ),
             SizedBox(
-              width: 180,
+              width: 300,
               height: 30,
               child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: isSetColor(),
-                  foregroundColor: Colors.black,
+                onPressed: () {
+                  if (optionColor1 == -1) {
+                    optionColor1 = 0;
+                    setState(() {
+                      selectedAnswerIndex = 0;
+                    });
+                  }
+                },
+                style: ButtonStyle(
+                  backgroundColor: buttonColor(0),
                 ),
                 child: Text("A. ${allQuestions[questionIndex]["options"][0]}"),
               ),
             ),
             const SizedBox(height: 10),
             SizedBox(
-              width: 180,
+              width: 300,
               height: 30,
               child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: isSetColor(),
-                    foregroundColor: Colors.black),
+                onPressed: () {
+                  if (optionColor1 == -1) {
+                    optionColor1 = 0;
+                    setState(() {
+                      selectedAnswerIndex = 1;
+                    });
+                  }
+                },
+                style: ButtonStyle(
+                  backgroundColor: buttonColor(1),
+                ),
                 child: Text("B. ${allQuestions[questionIndex]["options"][1]}"),
               ),
             ),
@@ -157,12 +175,18 @@ class _QuizState extends State<Quiz> {
             ),
             SizedBox(
               height: 30,
-              width: 180,
+              width: 300,
               child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: isSetColor(),
-                  foregroundColor: Colors.black,
+                onPressed: () {
+                  if (optionColor1 == -1) {
+                    optionColor1 = 0;
+                    setState(() {
+                      selectedAnswerIndex = 2;
+                    });
+                  }
+                },
+                style: ButtonStyle(
+                  backgroundColor: buttonColor(2),
                 ),
                 child: Text("C. ${allQuestions[questionIndex]["options"][2]}"),
               ),
@@ -172,13 +196,18 @@ class _QuizState extends State<Quiz> {
             ),
             SizedBox(
               height: 30,
-              width: 180,
+              width: 300,
               child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: isSetColor(), foregroundColor: Colors.black,
-
-                  //isSetColor(),
+                onPressed: () {
+                  if (optionColor1 == -1) {
+                    optionColor1 = 0;
+                    setState(() {
+                      selectedAnswerIndex = 3;
+                    });
+                  }
+                },
+                style: ButtonStyle(
+                  backgroundColor: buttonColor(3),
                 ),
                 child: Text(
                   "D. ${allQuestions[questionIndex]["options"][3]}",
@@ -188,7 +217,9 @@ class _QuizState extends State<Quiz> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            
+          },
           child: const Icon(
             Icons.arrow_forward_outlined,
             size: 25,
