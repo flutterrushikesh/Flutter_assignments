@@ -41,9 +41,39 @@ class _QuizAppState extends State<QuizApp> {
       option: ["char", "string", "String", "str"],
       answerIndex: 2,
     ),
+    const Question(
+      question: "Which part of for loop is optional",
+      option: [
+        "Initialization",
+        "Condition",
+        "Interation",
+        "None of the above"
+      ],
+      answerIndex: 3,
+    ),
+    const Question(
+      question: "Null safety helps to prevent ........ pointer exception  ",
+      option: ["runtime", "compiletime", "memory", "logical"],
+      answerIndex: 1,
+    ),
+    const Question(
+      question: "Which keyword is used to catch the exact exception?",
+      option: ["catch", "on ", "if", "throw"],
+      answerIndex: 1,
+    ),
+    const Question(
+      question: "In dart, class can implements ....... interface",
+      option: ["single", "static", "private", "multiple"],
+      answerIndex: 3,
+    ),
+    const Question(
+      question: "The scope of private instance variables in the class ",
+      option: ["Class scope", "File scope", "Methos scope", "Folder scope"],
+      answerIndex: 1,
+    )
   ];
 
-  bool questionScreen = true;
+  int questionScreen = -1;
   int questionIndex = 0;
   int selectedAnswerIndex = -1;
   int optionColor = -1;
@@ -79,14 +109,98 @@ class _QuizAppState extends State<QuizApp> {
         } else {
           questionIndex = 0;
           selectedAnswerIndex = -1;
-          questionScreen = false;
+          questionScreen = 1;
         }
       }
     });
   }
 
+  String result() {
+    if (correctAnswers <= 5) {
+      return "Better Luck Next time...";
+    } else {
+      return "Congragulations..!";
+    }
+  }
+
+  TextStyle textStyle() {
+    if (correctAnswers <= 5) {
+      return const TextStyle(
+        fontWeight: FontWeight.w500,
+        fontSize: 30,
+        color: Colors.red,
+      );
+    } else {
+      return const TextStyle(
+        fontWeight: FontWeight.w500,
+        fontSize: 35,
+        color: Colors.green,
+      );
+    }
+  }
+
+  FloatingActionButton buttonResult() {
+    if (correctAnswers <= 5) {
+      return FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            questionScreen = 0;
+            correctAnswers = 0;
+            selectedAnswerIndex - 1;
+            optionColor = -1;
+          });
+        },
+        child: const Text("Reset"),
+      );
+    } else {
+      return FloatingActionButton(
+        onPressed: () {},
+        child: const Text(
+          "Done...",
+          style: TextStyle(
+            fontSize: 15,
+          ),
+        ),
+      );
+    }
+  }
+
+  String resultImage() {
+    if (correctAnswers <= 5) {
+      return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLuX8WkQSobOz0zq5xyYr8AMywbWO08bL3og&usqp=CAU";
+    } else {
+      return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmoGE8pGXE4aUURpYIETqvw6W5RZB-iVvKdw&usqp=CAU";
+    }
+  }
+
   Scaffold screen() {
-    if (questionScreen == true) {
+    if (questionScreen == -1) {
+      return Scaffold(
+          body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.network(
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8a0VGkdTdJX-jWluSxrQ6GZ_zClgsqr6tre5S67LWRazBMAFUhbKcMtp9nHt_mij6qUo&usqp=CAU',
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  questionScreen = 0;
+                });
+              },
+              child: const Text(
+                "Start Quiz",
+                style: TextStyle(color: Colors.black),
+              ),
+            )
+          ],
+        ),
+      ));
+    } else if (questionScreen == 0) {
       return Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -230,6 +344,7 @@ class _QuizAppState extends State<QuizApp> {
 
             setState(() {
               questionValidation();
+
               selectedAnswerIndex = -1;
             });
           },
@@ -252,53 +367,30 @@ class _QuizAppState extends State<QuizApp> {
         body: Center(
           child: Column(
             children: [
-              Image.network(
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmoGE8pGXE4aUURpYIETqvw6W5RZB-iVvKdw&usqp=CAU',
-                height: 300,
-                width: 200,
+              const SizedBox(
+                height: 40,
               ),
-              const Text(
-                "Congragulations!!!",
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 30,
-                  color: Color.fromARGB(255, 32, 193, 38),
-                ),
+              Image.network(
+                resultImage(),
               ),
               const SizedBox(
                 height: 10,
               ),
               Text(
-                "You have completed $correctAnswers/${allQuestions.length}",
+                "You score  $correctAnswers/${allQuestions.length}",
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              const SizedBox(height: 30),
-              ElevatedButton(
-                style: const ButtonStyle(
-                  foregroundColor: MaterialStatePropertyAll(Colors.black),
-                ),
-                onPressed: () {
-                  setState(() {
-                    questionScreen = true;
-                    questionIndex = 0;
-                    selectedAnswerIndex = -1;
-                    correctAnswers = 0;
-                  });
-                },
-                child: const Text(
-                  "Reset",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18,
-                  ),
-                ),
+              Text(
+                result(),
+                style: textStyle(),
               ),
             ],
           ),
         ),
+        floatingActionButton: buttonResult(),
       );
     }
   }
