@@ -7,40 +7,40 @@ class QuizApp extends StatefulWidget {
 }
 
 class Question {
-  final String? modelquestion;
-  final List<String>? options;
+  final String? question;
+  final List<String>? option;
   final int? answerIndex;
 
-  const Question(this.modelquestion, this.options, this.answerIndex);
+  const Question({this.question, this.option, this.answerIndex});
 }
 
 class _QuizAppState extends State<QuizApp> {
   List allQuestions = [
-    {
-      "question": "Which datatype hold the both value of int and double?",
-      "option": ["numeric", "int", "double", "num"],
-      "answerIndex": 3,
-    },
-    {
-      "question": "....... data type can be used to represent true or false",
-      "option": ["numeric", "int", "bool", "boolean"],
-      "answerIndex": 2,
-    },
-    {
-      "question": "Which of the following is not arithematic operator?",
-      "option": ["#", "/", "+", "-"],
-      "answerIndex": 0,
-    },
-    {
-      "question": "....... property is used to check the runtime data",
-      "option": ["runtimeType", "typeOf", "instanceOf", "runtime"],
-      "answerIndex": 0,
-    },
-    {
-      "question": "Which data type used to declare string",
-      "option": ["char", "string", "String", "str"],
-      "answerIndex": 2,
-    }
+    const Question(
+      question: "Which datatype hold the both value of int and double?",
+      option: ["numeric", "int", "double", "num"],
+      answerIndex: 3,
+    ),
+    const Question(
+      question: "....... data type can be used to represent true or false",
+      option: ["numeric", "int", "bool", "boolean"],
+      answerIndex: 2,
+    ),
+    const Question(
+      question: "Which of the following is not arithematic operator?",
+      option: ["#", "/", "+", "-"],
+      answerIndex: 0,
+    ),
+    const Question(
+      question: "....... property is used to check the runtime data",
+      option: ["runtimeType", "typeOf", "instanceOf", "runtime"],
+      answerIndex: 0,
+    ),
+    const Question(
+      question: "Which data type used to declare string",
+      option: ["char", "string", "String", "str"],
+      answerIndex: 2,
+    ),
   ];
 
   bool questionScreen = true;
@@ -51,7 +51,7 @@ class _QuizAppState extends State<QuizApp> {
 
   MaterialStatePropertyAll<Color?> validateAnswer(int buttonIndex) {
     if (selectedAnswerIndex != -1) {
-      if (buttonIndex == allQuestions[questionIndex]["answerIndex"]) {
+      if (buttonIndex == allQuestions[questionIndex].answerIndex) {
         return const MaterialStatePropertyAll(Colors.green);
       } else if (buttonIndex == selectedAnswerIndex) {
         return const MaterialStatePropertyAll(Colors.red);
@@ -68,7 +68,7 @@ class _QuizAppState extends State<QuizApp> {
       if (selectedAnswerIndex == -1) {
         return;
       }
-      if (selectedAnswerIndex == allQuestions[questionIndex]["answerIndex"]) {
+      if (selectedAnswerIndex == allQuestions[questionIndex].answerIndex) {
         correctAnswers++;
       }
       if (selectedAnswerIndex != -1) {
@@ -126,7 +126,7 @@ class _QuizAppState extends State<QuizApp> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "${allQuestions[questionIndex]["question"]}",
+                  "${allQuestions[questionIndex].question}",
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 15,
@@ -150,7 +150,7 @@ class _QuizAppState extends State<QuizApp> {
                   }
                 },
                 child: Text(
-                  "A. ${allQuestions[questionIndex]["option"][0]}",
+                  "A. ${allQuestions[questionIndex].option[0]}",
                   style: const TextStyle(
                     fontSize: 18,
                     color: Colors.black,
@@ -174,7 +174,7 @@ class _QuizAppState extends State<QuizApp> {
                   }
                 },
                 child: Text(
-                  "B. ${allQuestions[questionIndex]["option"][1]}",
+                  "B. ${allQuestions[questionIndex].option[1]}",
                   style: const TextStyle(
                     fontSize: 18,
                     color: Colors.black,
@@ -197,7 +197,7 @@ class _QuizAppState extends State<QuizApp> {
                     });
                   }
                 },
-                child: Text("C. ${allQuestions[questionIndex]["option"][2]}",
+                child: Text("C. ${allQuestions[questionIndex].option[2]}",
                     style: const TextStyle(fontSize: 18, color: Colors.black)),
               ),
             ),
@@ -217,7 +217,7 @@ class _QuizAppState extends State<QuizApp> {
                   }
                 },
                 child: Text(
-                  "D. ${allQuestions[questionIndex]["option"][3]}",
+                  "D. ${allQuestions[questionIndex].option[3]}",
                   style: const TextStyle(fontSize: 18, color: Colors.black),
                 ),
               ),
