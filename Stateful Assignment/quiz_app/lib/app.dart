@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class QuizApp extends StatefulWidget {
   const QuizApp({super.key});
   @override
@@ -150,6 +151,10 @@ class _QuizAppState extends State<QuizApp> {
                 },
                 child: Text(
                   "A. ${allQuestions[questionIndex]["option"][0]}",
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),
@@ -170,6 +175,10 @@ class _QuizAppState extends State<QuizApp> {
                 },
                 child: Text(
                   "B. ${allQuestions[questionIndex]["option"][1]}",
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),
@@ -188,9 +197,8 @@ class _QuizAppState extends State<QuizApp> {
                     });
                   }
                 },
-                child: Text(
-                  "C. ${allQuestions[questionIndex]["option"][2]}",
-                ),
+                child: Text("C. ${allQuestions[questionIndex]["option"][2]}",
+                    style: const TextStyle(fontSize: 18, color: Colors.black)),
               ),
             ),
             const SizedBox(height: 15),
@@ -210,6 +218,7 @@ class _QuizAppState extends State<QuizApp> {
                 },
                 child: Text(
                   "D. ${allQuestions[questionIndex]["option"][3]}",
+                  style: const TextStyle(fontSize: 18, color: Colors.black),
                 ),
               ),
             ),
@@ -224,7 +233,7 @@ class _QuizAppState extends State<QuizApp> {
               selectedAnswerIndex = -1;
             });
           },
-          child: const Icon(Icons.arrow_forward_outlined),
+          child: const Icon(Icons.arrow_forward_outlined, color: Colors.black),
         ),
       );
     } else {
@@ -253,6 +262,7 @@ class _QuizAppState extends State<QuizApp> {
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 30,
+                  color: Color.fromARGB(255, 32, 193, 38),
                 ),
               ),
               const SizedBox(
@@ -263,6 +273,27 @@ class _QuizAppState extends State<QuizApp> {
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(height: 30),
+              ElevatedButton(
+                style: const ButtonStyle(
+                  foregroundColor: MaterialStatePropertyAll(Colors.black),
+                ),
+                onPressed: () {
+                  setState(() {
+                    questionScreen = true;
+                    questionIndex = 0;
+                    selectedAnswerIndex = -1;
+                    correctAnswers = 0;
+                  });
+                },
+                child: const Text(
+                  "Reset",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18,
+                  ),
                 ),
               ),
             ],
