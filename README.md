@@ -9,8 +9,6 @@ StateFul Assignments: Assignment4, Assignment5, Assignment6, Assignment7, Assign
 SS- Screeshot.
 OP-output
 
-Basic quiz app ui is update- increment question count.
-
 
 assignment 6  in toggling such change are required
 
