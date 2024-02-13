@@ -116,31 +116,39 @@ class _QuizAppState extends State<QuizApp> {
   }
 
   String result() {
-    if (correctAnswers <= 5) {
-      return "Better Luck Next time...";
+    if (correctAnswers >= 7) {
+      return "Awsome..!";
+    } else if (correctAnswers >= 4) {
+      return "Good..!";
     } else {
-      return "Congragulations..!";
+      return "Better Luck Next Time..!";
     }
   }
 
   TextStyle textStyle() {
-    if (correctAnswers <= 5) {
+    if (correctAnswers >= 7) {
+      return const TextStyle(
+        fontWeight: FontWeight.w500,
+        fontSize: 30,
+        color: Colors.green,
+      );
+    } else if (correctAnswers >= 4) {
+      return const TextStyle(
+        fontWeight: FontWeight.w500,
+        fontSize: 30,
+        color: Color.fromARGB(255, 184, 222, 12),
+      );
+    } else {
       return const TextStyle(
         fontWeight: FontWeight.w500,
         fontSize: 30,
         color: Colors.red,
       );
-    } else {
-      return const TextStyle(
-        fontWeight: FontWeight.w500,
-        fontSize: 35,
-        color: Colors.green,
-      );
     }
   }
 
-  FloatingActionButton buttonResult() {
-    if (correctAnswers <= 5) {
+  FloatingActionButton? buttonResult() {
+    if (correctAnswers <= 4) {
       return FloatingActionButton(
         onPressed: () {
           setState(() {
@@ -150,56 +158,103 @@ class _QuizAppState extends State<QuizApp> {
             optionColor = -1;
           });
         },
-        child: const Text("Reset"),
+        child: const Text(
+          "Reset...",
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+        ),
       );
     } else {
       return FloatingActionButton(
         onPressed: () {},
         child: const Text(
           "Done...",
-          style: TextStyle(
-            fontSize: 15,
-          ),
+          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
         ),
       );
     }
   }
 
   String resultImage() {
-    if (correctAnswers <= 5) {
-      return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLuX8WkQSobOz0zq5xyYr8AMywbWO08bL3og&usqp=CAU";
-    } else {
+    if (correctAnswers >= 7) {
       return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmoGE8pGXE4aUURpYIETqvw6W5RZB-iVvKdw&usqp=CAU";
+    } else if (correctAnswers >= 4) {
+      return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAMZNMPRAb9E3V9PNGHKeg6tAzT5CvV7fV5g&usqp=CAU";
+    } else {
+      return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLuX8WkQSobOz0zq5xyYr8AMywbWO08bL3og&usqp=CAU";
     }
   }
 
   Scaffold screen() {
     if (questionScreen == -1) {
       return Scaffold(
-          body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.network(
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8a0VGkdTdJX-jWluSxrQ6GZ_zClgsqr6tre5S67LWRazBMAFUhbKcMtp9nHt_mij6qUo&usqp=CAU',
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  questionScreen = 0;
-                });
-              },
-              child: const Text(
-                "Start Quiz",
-                style: TextStyle(color: Colors.black),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.lightBlue,
+                      offset: Offset(
+                        20,
+                        20,
+                      ),
+                      blurRadius: 50,
+                    ),
+                    BoxShadow(
+                      color: Colors.lightBlue,
+                      offset: Offset(
+                        -20,
+                        -20,
+                      ),
+                      blurRadius: 50,
+                    ),
+                    BoxShadow(
+                      color: Colors.black,
+                      offset: Offset(
+                        -20,
+                        20,
+                      ),
+                      blurRadius: 30,
+                    ),
+                    BoxShadow(
+                      color: Colors.black,
+                      offset: Offset(
+                        20,
+                        -20,
+                      ),
+                      blurRadius: 50,
+                    ),
+                  ],
+                ),
+                child: Image.network(
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8a0VGkdTdJX-jWluSxrQ6GZ_zClgsqr6tre5S67LWRazBMAFUhbKcMtp9nHt_mij6qUo&usqp=CAU',
+                ),
               ),
-            )
-          ],
+              const SizedBox(
+                height: 100,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    questionScreen = 0;
+                  });
+                },
+                style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(Colors.amber)),
+                child: const Text(
+                  "Start Quiz",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
-      ));
+      );
     } else if (questionScreen == 0) {
       return Scaffold(
         appBar: AppBar(
@@ -272,7 +327,7 @@ class _QuizAppState extends State<QuizApp> {
                 ),
               ),
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 20),
             SizedBox(
               height: 50,
               width: 280,
@@ -296,7 +351,7 @@ class _QuizAppState extends State<QuizApp> {
                 ),
               ),
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 20),
             SizedBox(
               height: 50,
               width: 280,
@@ -315,7 +370,7 @@ class _QuizAppState extends State<QuizApp> {
                     style: const TextStyle(fontSize: 18, color: Colors.black)),
               ),
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 20),
             SizedBox(
               height: 50,
               width: 280,
