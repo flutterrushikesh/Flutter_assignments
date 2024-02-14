@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-       // useMaterial3: true,
+        // useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -75,12 +75,13 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
               'You have pushed the button this many times:',
-              style: Theme.of(context).textTheme.displayLarge,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            ElevatedButton(onPressed: () {}, child: const Text("My button"))
           ],
         ),
       ),
