@@ -39,7 +39,6 @@ class _FeildState extends State<Feild> {
               controller: _namesTextEditingController,
               focusNode: _nameFocusNode,
               decoration: InputDecoration(
-                border: InputBorder.none,
                 hintText: "Enter your name ....",
                 hintStyle: const TextStyle(
                   fontWeight: FontWeight.w800,
@@ -109,9 +108,15 @@ class _FeildState extends State<Feild> {
                   height: 30,
                   width: 280,
                   margin: const EdgeInsets.all(8),
-                  color: Colors.amber,
+                  //color: Colors.amber,
                   alignment: Alignment.center,
-                  child: Text(namesList[index]),
+                  child: Text(
+                    namesList[index],
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20,
+                    ),
+                  ),
                 );
               },
             ),
