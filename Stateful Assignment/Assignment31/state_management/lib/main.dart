@@ -22,7 +22,7 @@ class Management extends StatefulWidget {
 }
 
 class _ManagementState extends State {
-
+  int count = 0;
   @override
   void initState() {
     print("In init State");
@@ -30,10 +30,14 @@ class _ManagementState extends State {
   }
 
   @override
-  void 
+  void didChangeDependencies() {
+    print("In didChangeDependancies");
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
+    print("In build");
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -43,6 +47,58 @@ class _ManagementState extends State {
           ),
         ),
       ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "Add here",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              "$count",
+              style: const TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+              ),
+            ),
+            Container(
+              height: 100,
+              width: 100,
+              color: Colors.blue,
+            )
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            print("In SetState");
+            count++;
+          });
+        },
+        child: const Icon(
+          Icons.add,
+        ),
+      ),
     );
+  }
+
+  @override
+  void reassemble() {
+    print("In reassemble");
+    super.reassemble();
+  }
+
+  @override
+  void dispose() {
+    print("In despose");
+    super.dispose();
   }
 }
