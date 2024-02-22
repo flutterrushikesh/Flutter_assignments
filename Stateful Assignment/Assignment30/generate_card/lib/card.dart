@@ -141,18 +141,47 @@ class _GenerateCardState extends State {
           ),
           const SizedBox(height: 20),
           Container(
-            color: const Color.fromARGB(233, 223, 236, 170),
-            child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Name : ${_nameTextEditingController.text}"),
-                  const SizedBox(height: 5),
-                  Text("Comapany Name: ${_cNameTextEditingController.text}"),
-                  const SizedBox(height: 5),
-                  Text("Company Location: ${_cLocTextEditingController.text}"),
-                ],
-              ),
+            width: double.infinity,
+            margin: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
+            decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 239, 255, 214),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    spreadRadius: 8,
+                    blurRadius: 20,
+                    offset: Offset(-5, 5),
+                  ),
+                ]),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Your Name : ${_nameTextEditingController.text}",
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  "Comapany Name: ${_cNameTextEditingController.text}",
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  "Company Location : ${_cLocTextEditingController.text}",
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
