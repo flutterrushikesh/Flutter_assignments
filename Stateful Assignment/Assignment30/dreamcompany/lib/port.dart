@@ -122,7 +122,7 @@ class _FeildState extends State<Feild> {
               controller: _namesTextEditingController2,
               // focusNode: _nameFocusNode,
               decoration: InputDecoration(
-                hintText: "Company name...",
+                hintText: "Company Location...",
                 hintStyle: const TextStyle(
                   fontWeight: FontWeight.w800,
                   fontSize: 17,
