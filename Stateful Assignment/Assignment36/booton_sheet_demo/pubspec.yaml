@@ -1,4 +1,4 @@
-name: to_du_ui
+name: booton_sheet_demo
 description: "A new Flutter project."
 publish_to: 'none'
 version: 0.1.0
@@ -9,7 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts: ^6.1.0
 
 dev_dependencies:
   flutter_test:
