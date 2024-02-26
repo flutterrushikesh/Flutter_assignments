@@ -25,10 +25,9 @@ class _TuduListState extends State {
   FocusNode descriptionFocusNode = FocusNode();
   FocusNode dateFocusNode = FocusNode();
 
-  List userData = [
-    const TuduModel(
-        title: "Rushikesh", description: "Dhale", date: "10 / 10 / 10")
-  ];
+  List userData = [];
+
+  bool editExisting = false;
 
   List colorList = const [
     Color.fromRGBO(250, 232, 232, 1),
@@ -40,7 +39,9 @@ class _TuduListState extends State {
   void showModal() {
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       builder: (BuildContext context) {
+        MainAxisSize.max;
         return Padding(
           padding: const EdgeInsets.all(15),
           child: Column(
@@ -168,6 +169,7 @@ class _TuduListState extends State {
                           color: Color.fromRGBO(34, 14, 163, 0.82),
                         ),
                       ),
+                      suffix: Icon(Icons.calendar_month_outlined),
                     ),
                   ),
                   const SizedBox(height: 25),
@@ -178,10 +180,14 @@ class _TuduListState extends State {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    userData.add(TuduModel(
-                        title: titleController.text,
-                        description: descriptionController.text,
-                        date: dateController.text));
+                    setState(
+                      () {
+                        userData.add(TuduModel(
+                            title: titleController.text,
+                            description: descriptionController.text,
+                            date: dateController.text));
+                      },
+                    );
                   },
                   style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(
@@ -236,11 +242,109 @@ class _TuduListState extends State {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(20),
         child: ListView.builder(
           itemCount: userData.length,
           itemBuilder: (BuildContext context, int index) {
-            return Column();
+            return Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: colorList[index % colorList.length],
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(
+                        15,
+                      ),
+                    ),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 20,
+                        spreadRadius: 5,
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          const SizedBox(width: 10),
+                          Container(
+                            height: 65,
+                            width: 65,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(Icons.image_outlined),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const SizedBox(height: 10),
+                                Text(
+                                  userData[index].title,
+                                  style: GoogleFonts.quicksand(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  userData[index].description,
+                                  style: GoogleFonts.quicksand(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 15),
+                      Row(
+                        children: [
+                          Text(
+                            userData[index].date,
+                            style: GoogleFonts.quicksand(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                            ),
+                          ),
+                          const Spacer(),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                if (editExisting == false) {
+                                  showModal();
+                                }
+                              });
+                            },
+                            child: const Icon(
+                              Icons.edit,
+                              size: 27,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          GestureDetector(
+                            onTap: () {},
+                            child: const Icon(Icons.delete_outline, size: 27),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            );
           },
         ),
       ),
