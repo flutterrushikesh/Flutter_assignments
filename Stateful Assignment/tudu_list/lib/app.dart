@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class TuduList extends StatefulWidget {
   const TuduList({super.key});
@@ -38,13 +39,27 @@ class _TuduListState extends State {
 
   void showModal() {
     showModalBottomSheet(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(
+            30,
+          ),
+          topRight: Radius.circular(
+            30,
+          ),
+        ),
+      ),
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        MainAxisSize.max;
         return Padding(
-          padding: const EdgeInsets.all(15),
+          padding: EdgeInsets.only(
+            left: 10,
+            right: 10,
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               const SizedBox(
                 height: 15,
@@ -152,6 +167,7 @@ class _TuduListState extends State {
                     controller: dateController,
                     focusNode: dateFocusNode,
                     autofocus: false,
+                    readOnly: true,
                     decoration: const InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
@@ -169,8 +185,21 @@ class _TuduListState extends State {
                           color: Color.fromRGBO(34, 14, 163, 0.82),
                         ),
                       ),
-                      suffix: Icon(Icons.calendar_month_outlined),
+                      suffixIcon: Icon(Icons.calendar_month_outlined),
                     ),
+                    onTap: () async {
+                      DateTime? pikkedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2024),
+                        lastDate: DateTime(2025),
+                      );
+                      String formatedDate =
+                          DateFormat.yMMMd().format(pikkedDate!);
+                      setState(() {
+                        dateController.text = formatedDate;
+                      });
+                    },
                   ),
                   const SizedBox(height: 25),
                 ],
@@ -211,6 +240,7 @@ class _TuduListState extends State {
                   ),
                 ),
               ),
+              const SizedBox(height: 35),
             ],
           ),
         );
@@ -270,7 +300,9 @@ class _TuduListState extends State {
                     children: [
                       Row(
                         children: [
-                          const SizedBox(width: 10),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Container(
                             height: 65,
                             width: 65,
