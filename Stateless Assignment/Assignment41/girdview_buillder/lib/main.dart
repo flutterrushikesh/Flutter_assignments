@@ -9,10 +9,31 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
+        appBar: AppBar(
+          title: const Text("Gridview builder"),
+          backgroundColor: Colors.blue,
+        ),
+        body: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+          ),
+          padding: const EdgeInsets.all(15),
+          itemCount: 30,
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+              alignment: Alignment.center,
+              color: Colors.amber,
+              child: Text(
+                "${index + 1}",
+                style: const TextStyle(fontSize: 17),
+              ),
+            );
+          },
         ),
       ),
     );
