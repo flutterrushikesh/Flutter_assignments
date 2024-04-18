@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:inheritedwidget_example/iheritedwidget.dart';
+import 'package:inheritedwidget_example/inheritedwidget.dart';
+import 'package:inheritedwidget_example/skill.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -42,7 +43,7 @@ class _HomeState extends State {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    "Username :${EmployeeData.of(context).username}",
+                    "name :${EmployeeData.of(context).name}",
                     style: const TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w500,
@@ -50,13 +51,45 @@ class _HomeState extends State {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    "Name :${EmployeeData.of(context).name}",
+                    "username :${EmployeeData.of(context).username}",
                     style: const TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                 ],
+              ),
+            ),
+            const SizedBox(height: 40),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const MySkills();
+                    },
+                  ),
+                );
+              },
+              style: const ButtonStyle(
+                minimumSize: MaterialStatePropertyAll(
+                  Size(double.infinity, 50),
+                ),
+                shape: MaterialStatePropertyAll(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                ),
+                backgroundColor: MaterialStatePropertyAll(
+                  Color.fromRGBO(14, 161, 125, 1),
+                ),
+              ),
+              child: const Text(
+                "Add Skills",
+                style: TextStyle(color: Colors.white),
               ),
             )
           ],

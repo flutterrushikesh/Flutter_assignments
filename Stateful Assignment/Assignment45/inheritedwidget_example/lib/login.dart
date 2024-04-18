@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:inheritedwidget_example/iheritedwidget.dart';
-// import 'package:inheritedwidget_demo/inheritedwidgetdemo.dart';
+import 'package:inheritedwidget_example/inheritedwidget.dart';
 import 'home.dart';
 // import 'inheritedwidget.dart';
 
@@ -151,7 +149,7 @@ class _LoginState extends State {
                 onPressed: () {
                   bool validateEmployee = formkey.currentState!.validate();
                   if (validateEmployee) {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) {
